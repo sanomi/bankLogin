@@ -16,9 +16,10 @@ module.exports = function(app, passport) {
                 description: req.body.description
             })
             user.save();
-            // var newBalance = user.local.balance + req.body.amount
         })
-        res.send("Transaction complete.")
+        res.render('profile.ejs', {
+            user : req.user
+        });
     })
 
 

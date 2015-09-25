@@ -14,7 +14,7 @@ var userSchema = mongoose.Schema({
         transactions: [ {
             amount: Number,
             description: String,
-            // date: {type: Date, default: Date.now()}
+            date: {type: Date, default: Date.now()}
         }]
     }
     
