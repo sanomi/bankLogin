@@ -27,8 +27,19 @@
                     <p>
                         <strong>id</strong>: <%= user._id %><br>
                         <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
-                        <strong>transactions</strong>: <%= user.local.transactions %>
+                        <strong>balance</strong>: <%= user.local.balance %><br>
+                        <strong>transactions</strong>: <br>
+
+                        <% for(var i=0; i<user.local.transactions.length; i++) {%>
+                           <tr>
+                             <td>
+                               amount: <%= user.local.transactions[i].amount%>,
+                             </td>
+                             <td>
+                               desciption: <%= user.local.transactions[i].description%>,<br>
+                             </td>
+                           </tr>
+                        <% } %>
                     </p>
                 <% } %>
                    
