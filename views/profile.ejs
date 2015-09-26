@@ -2,26 +2,22 @@
 <html>
 <head>
     <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css">
     <style>
         body         { padding-top:80px; word-wrap:break-word; }
     </style>
 </head>
 <body>
 <div class="container">
-
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    <div class="text-center">
+        <h1>Profile Page</h1>
+        <a href="/logout" class="button">Logout</a>
     </div>
-
     <div class="row">
-
         <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+        <div class="small-6 columns">
+            <div class='panel'>
+                <h3>Local</h3>
 
                 <% if (user.local.email) { %>
                     <p>
@@ -29,36 +25,39 @@
                         <strong>email</strong>: <%= user.local.email %><br>
                         <strong>balance</strong>: <%= user.local.balance %><br>
                         <strong>transactions</strong>: <br>
-
-                        <% for(var i=0; i<user.local.transactions.length; i++) {%>
-                           <tr>
-                             <td>
-                               amount: <%= user.local.transactions[i].amount%>,
-                             </td>
-                             <td>
-                               desciption: <%= user.local.transactions[i].description%>,<br>
-                             </td>
-                             <td>
-                               date: <%= user.local.transactions[i].date%>,<br>
-                             </td>
-                           </tr>
-                        <% } %>
-                    </p>
-                <% } %>
+                        <table>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                                <% for(var i=0; i<user.local.transactions.length; i++) {%>
+                                   <tr>
+                                     <td>
+                                       <%= user.local.transactions[i].amount%>
+                                     </td>
+                                     <td>
+                                       <%= user.local.transactions[i].description%>
+                                     </td>
+                                     <td>
+                                       <%= user.local.transactions[i].date%>
+                                     </td>
+                                   </tr>
+                                <% } %>
+                            <% } %>
+                        </table>   
                    
 
             </div>
-        </div>
+</div>
 
 <!-- Deposit/Withdraw -->
-<div class="col-sm-6">
+<div class="small-6 columns panel">
             <div class="well">
                 <form action="/transaction" method='post'>
-                <h3><span class="fa fa-user"></span> Local</h3>
+                <h3>Local</h3>
                 <input type="hidden" value=<%= user._id %> name='id'>
                 <input type="hidden" value=<%= user.local.balance %> name='balance'>
-                <input type="number" name="amount" placeholder="Enter positive amount for deposit, negative for withdraw" class="col-sm-12">
-                <input type="text" name='description' placeholder="Description" class='col-sm-12' >
+                <input type="number" name="amount" placeholder="Enter positive amount for deposit, negative for withdraw" class="small-12 columns">
+                <input type="text" name='description' placeholder="Description" class='small-12 columns' >
               <!--   <a href="/transaction/" class='btn btn-default'> -->
               <button type="submit">Complete Transaction</button>
           <!-- </a> -->
@@ -67,5 +66,7 @@
         </div>
 
 </div>
+<script src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
+<script src='http://cdn.foundation5.zurb.com/foundation.js'></script>
 </body>
 </html>
